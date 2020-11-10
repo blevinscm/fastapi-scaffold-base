@@ -1,29 +1,34 @@
-from fastapi import APIRouter
-from app.data import models 
+from fastapi import APIRouter, HTTPException
+from app.data import models
+from typing import List
+from odmantic import AIOEngine, Model, ObjectId
 
 router = APIRouter()
 
+Hug = models.Hug
+engine = AIOEngine()
 
-@router.get("/hugs/", tags=["Friendly_Hugs"])
-async def read_hugs():
-    '''
-    Returns all huggers available
-    '''
-    return [{"hugs": "Pooh"}, {"username": "Bear"}]
-
-
-@router.get("/hugs/me", tags=["Friendly_Hugs"])
-async def read_huggee_me():
-    '''
-    Set to return user context. In this case the hugee.
-    '''
-    return {"username": "Huggable Developer"}
+@router.put("/hugs/", response_model=Hug, tags=["hugs"])
+async def new_hug(hug: Hug):
+    await engine.save(hug)
+    return hug
 
 
-@router.get("/hugs/{type}", tags=["Friendly_Hugs"])
-async def read_hug_type(hug_type: str):
-    '''
-    Allows user to enter the type of hug they want.
-    Replace with any single non-enum type.
-    '''
-    return {"username": hug_type}
+@router.get("/hugs/", response_model=List[Hug], tags=["hugs"])
+async def get_hugs():
+    trees = await engine.find(Hug)
+    return trees
+
+
+@router.get("/hugs/count", response_model=int, tags=["hugs"])
+async def count_hugs():
+    count = await engine.count(Hug)
+    return count
+
+
+@router.get("/hugs/{id}", response_model=Hug, tags=["hugs"])
+async def get_tree_by_id(id: ObjectId):
+    hug = await engine.find_one(Hug, Hug.id == id)
+    if hug is None:
+        raise HTTPException(404)
+    return hug
