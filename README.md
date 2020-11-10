@@ -25,33 +25,54 @@ This uis how I set up a new FastAPI project.  I hope this is helpful.
   |[virtualenv](https://virtualenv.pypa.io/en/stable/installation.html) | Again I am not trying to get fancy.  ```py -m pip install virtualenv```|
   |[FastAPI](https://github.com/tiangolo/fastapi) |  I usally install all related packages in my venv. ```pip install fastapi[all]```  |
   |[Docker](https://www.docker.com/products/docker-desktop) | (Optional) I use it to startup DBs instead of installing directly. Will make your life easier. There are also images for bundled FastAPI environmets on Docker Hub.
-  |[ODMantic](https://art049.github.io/odmantic/) | ORM for MongoDB with great model and document support. |
+  |[ODMantic](https://art049.github.io/odmantic/) | (Optional) ORM for MongoDB with great model and document support. |
   |[TortoiseORM](https://tortoise-orm.readthedocs.io/en/latest/) | (Optional) ASYNC ORM that works well with FastAPI and Postgres/MySQL
 
 
-## Setup virtual environment (Windows)
+## Get Started
 
-https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/
+1. Install Python if not already installed
 
-1. Make sure venv is installed globally
-    ```bash
+2. Clone this repository: 
+   ```git
+    git clone https://github.com/blevinscm/fastapi-scaffold-base.git
+    ```
+
+3. Install virtualenv
+    ```zsh
     py -m pip install --user virtualenv
     ```
-2. cd into workspace
-3. Create virtual environment
+4. CD into project directory
+    ```zsh
+        cd dir 
+    ```
+5. Create virtual environment
     ```bash
     py -m venv env
     ```
-4. Activate virtual environment
+6. Activate virtual environment
     ```bash
-    .\env\Scripts\activate
+    source .\env\bin\activate
     ```
-5. Install pip dependencies
+7. Install pip dependencies (This will install all FastAPI Modules.  If you do not want [all] plese adjust the req file.)
     ```bash
     pip install -r requirements.txt
     ```
-6. Now you can run the ```__main__.py``` script from a virtual context ```python lib```
-7. To get out of venv
+8. (Optional) Pull latest Mongo image and create mongo container for dev purposes
+    ```docker
+    docker pull mongo:latest
+    docker run --rm --net=host mongo
+    ```
+9. Set execute permissions on either win-start-FastApi.ps1 or nix-start-FastAPI
+
+10. Run the start-FastAPI for your system 
+
+11. Go to https://localhost:8000/docs to see your FastAPI documentation and explore the sample docs. 
+
+
+12. Close your FastAPI terminal and your Mongo Terminal.
+
+11. To get out of venv
     ```bash
     deactivate
     ```
