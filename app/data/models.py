@@ -1,5 +1,5 @@
 import typing
-from odmantic import AIOEngine, Model, ObjectId
+from odmantic import Model
 
 
 class Hug(Model):

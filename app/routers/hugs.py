@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from app.data import models
 from typing import List
-from odmantic import AIOEngine, Model, ObjectId
+from odmantic import AIOEngine, ObjectId
 
 router = APIRouter()
 
@@ -27,7 +27,7 @@ async def count_hugs():
 
 
 @router.get("/hugs/{id}", response_model=Hug, tags=["hugs"])
-async def get_tree_by_id(id: ObjectId):
+async def get_hug_by_id(id: ObjectId):
     hug = await engine.find_one(Hug, Hug.id == id)
     if hug is None:
         raise HTTPException(404)
