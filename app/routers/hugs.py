@@ -16,8 +16,8 @@ async def new_hug(hug: Hug):
 
 @router.get("/hugs/", response_model=List[Hug], tags=["hugs"])
 async def get_hugs():
-    trees = await engine.find(Hug)
-    return trees
+    hugs = await engine.find(Hug)
+    return hugs
 
 
 @router.get("/hugs/count", response_model=int, tags=["hugs"])
