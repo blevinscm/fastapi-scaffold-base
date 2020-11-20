@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/main.css') }}">
+
+</head>
+
+<body>
+    <div class="grid-container">
+        <div class="h">
+            <div class="lo"><img class="logoimg" src="{{ url_for ('static', path='img/boy_moon Mask.svg') }}"></div>
+            <div class="bra">
+                <h1>Moon Hugs</h1>
+            </div>
+
+            <div class="men">
+                <ul>
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a class="active" href="#home">Home</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="b parallax"></div>
+        <div class="m">
+            {% block main %}
+
+            {% endblock %}
+        </div>
+        <div class="s">
+            {% block side %}
+
+            {% endblock %}
+        </div>
+        <div class="f parallax">
+            <div class="card footer">
+                <header class="major">
+                    <h3>About</h3>
+                </header>
+                <section style="grid-column: 1;">
+                    <p>Operation Enduring Honor Inc. is a 501(c)(3) located in South Carolina. Our goal is to make it
+                        possible for everyone to enjoy the outdoors.
+                        We want all families to enjoy picnics, hiking and camping, especially those who
+                        have physical challenges. We want to honor our Veterans for their dedication
+                        and service to our Great Country and State.</p>
+
+                </section>
+                <section style="grid-column: 2;">
+
+                </section>
+                <section style="grid-column: 3;">
+                    <header>
+                        <h3>Contact</h3>
+                    </header>
+                    <ul class="labeled-icons">
+                        <li>
+                            <h4 class="icon solid fa-envelope"><span class="label">Email</span></h4>
+                            <a href="#">info@operationenduringhonor.org</a>
+                        </li>
+                        <li>
+                            <h4 class="icon solid fa-phone"><span class="label">Phone</span></h4>
+                            +1(864)923-1665
+                        </li>
+                        <li>
+                            <h4 class="icon solid fa-home"><span class="label">Address</span></h4>
+                            302 Jacobs Hwy, Suite A<br>Clinton, SC 29325
+                        </li>
+                    </ul>
+                </section>
+
+                <div class="copyright">
+                    &copy; Operation Enduring Honor 2020. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
