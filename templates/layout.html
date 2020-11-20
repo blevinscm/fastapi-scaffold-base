@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', path='css/main.css') }}">
+
 </head>
 
 <body>
     <div class="grid-container">
         <div class="h">
-            <div class="lo"><img class="logoimg" src="../img/boy_moon Mask.svg" alt=""></div>
+            <div class="lo"><img class="logoimg" src="{{ url_for ('static', path='img/boy_moon Mask.svg') }}"></div>
             <div class="bra">
                 <h1>Moon Hugs</h1>
             </div>
