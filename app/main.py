@@ -1,11 +1,15 @@
+from fastapi import requests
+from app.routers.hugs import Hug
 from fastapi import Request, FastAPI, Header, HTTPException
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
-from fastapi.staticfiles import StaticFiles  
+from fastapi.staticfiles import StaticFiles
 from .routers import hugs
 
 
+
 templates = Jinja2Templates(directory="templates")
+
 
 tags_metadata = [
     {
@@ -22,9 +26,10 @@ app = FastAPI(
     openapi_tags=tags_metadata,
     title="The super duper Hugs API",
     description="This is an example for the base project Generator",
-    version="0.0.0.0.0.0.1",
+    version="v0.0.1",
 
 )
+
 
 
 async def get_token_header(x_token: str = Header(...)):
@@ -35,7 +40,7 @@ async def get_token_header(x_token: str = Header(...)):
 app.include_router(hugs.router)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 async def serve_home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
