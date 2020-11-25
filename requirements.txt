@@ -50,3 +50,4 @@ Rx==1.6.1
 six==1.15.0
 starlette==0.13.6
 uvicorn==0.12.2
+dnspython

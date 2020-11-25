@@ -2,11 +2,15 @@ from fastapi import APIRouter, HTTPException
 from app.data import models
 from typing import List
 from odmantic import AIOEngine, ObjectId
+from motor.motor_asyncio import AsyncIOMotorClient
+from app.config import config
 
 router = APIRouter()
+settings = config.Settings()
 
 Hug = models.Hug
-engine = AIOEngine()
+client = AsyncIOMotorClient(settings.uri)
+engine = AIOEngine(motor_client=client)
 
 @router.put("/hugs/", response_model=Hug, tags=["hugs"])
 async def new_hug(hug: Hug):
